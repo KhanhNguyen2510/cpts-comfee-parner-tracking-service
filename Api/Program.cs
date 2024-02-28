@@ -1,20 +1,34 @@
-var builder = WebApplication.CreateBuilder(args);
+using Api;
+using Infrastructure;
 
-// Add services to the container.
+WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+IServiceCollection services = builder.Services;
 
-var app = builder.Build();
+_ = services.AddWebServices();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+_ = services.AddInfrastructureServices();
+
+const string __myAllowAllOrigins = "_myAllowAllOrigins";
+_ = services.AddCors(options =>
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+    options.AddPolicy(__myAllowAllOrigins,
+        policyBuilder =>
+        {
+            policyBuilder.AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                .WithExposedHeaders("location", "Content-Disposition", "Link", "X-Total-Count", "X-Limit");
+        });
+});
+
+_ = services.AddControllers();
+
+WebApplication app = builder.Build();
+
+app.UseSwagger();
+
+app.UseSwaggerUI();
 
 app.UseHttpsRedirection();
 

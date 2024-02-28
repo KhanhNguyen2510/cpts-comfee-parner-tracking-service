@@ -4,11 +4,21 @@
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>a6c25523-8784-42d5-bb55-ddf0a98aac3a</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.16" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="5.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.2" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="6.5.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="6.5.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="6.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
