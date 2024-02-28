@@ -28,7 +28,7 @@ WebApplication app = builder.Build();
 
 app.UseSwagger();
 
-app.UseSwaggerUI();
+// app.UseSwaggerUI();
 
 app.UseHttpsRedirection();
 
